@@ -111,7 +111,7 @@ public class JournalFolderServiceTest {
 
 		List<DDMStructure> ddmStructures =
 			JournalFolderLocalServiceUtil.getDDMStructures(
-					_group.getGroupId(), folder.getFolderId(),
+				_group.getGroupId(), folder.getFolderId(),
 				JournalFolderConstants.
 					RESTRICTION_TYPE_DDM_STRUCTURES_AND_WORKFLOW, true);
 

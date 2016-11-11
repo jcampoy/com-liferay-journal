@@ -32,6 +32,8 @@ import com.liferay.journal.util.impl.JournalUtil;
 import com.liferay.journal.web.internal.portlet.JournalPortlet;
 import com.liferay.portal.kernel.diff.CompareVersionsException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -291,7 +293,15 @@ public class ActionUtil {
 				try {
 					ddmStructure = DDMStructureServiceUtil.getStructure(
 						ddmStructureId);
-				} catch (PortalException pe) {
+				}
+				catch (PortalException pe) {
+					if (_log.isDebugEnabled()) {
+						_log.debug(
+							"Unable to get the structure with ddmStructureId " +
+								ddmStructureId,
+							pe);
+					}
+
 					ddmStructure = null;
 				}
 			}
@@ -548,5 +558,7 @@ public class ActionUtil {
 
 		return languageId;
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(ActionUtil.class);
 
 }
